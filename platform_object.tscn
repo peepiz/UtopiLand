@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://blw6rc0om3ttn"]
+
+[ext_resource type="Material" uid="uid://bl2oja2e8vavw" path="res://mat_glitch.tres" id="1_dggge"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ogxwf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_f2vk6"]
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=2136708274]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=264736176]
+transform = Transform3D(3, 0, 0, 0, 0.1, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("BoxShape3D_ogxwf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1813499009]
+transform = Transform3D(3, 0, 0, 0, 0.1, 0, 0, 0, 3, 0, 0, 0)
+mesh = SubResource("BoxMesh_f2vk6")
+surface_material_override/0 = ExtResource("1_dggge")

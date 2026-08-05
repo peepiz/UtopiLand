@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b1g04dvutlr5j"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://bgivqtm816wo8" path="res://physics_for_objects_active.tres" id="1_l12vj"]
+[ext_resource type="Material" uid="uid://bl2oja2e8vavw" path="res://mat_glitch.tres" id="2_re4rs"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_f2vk6"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5jeca"]
+data = PackedVector3Array(0, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, -0.5, -0.5, -0.5, 0, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="RigidBody3D" type="RigidBody3D" unique_id=1187002761]
+mass = 80.0
+physics_material_override = ExtResource("1_l12vj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=601708812]
+mesh = SubResource("PrismMesh_f2vk6")
+surface_material_override/0 = ExtResource("2_re4rs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1809882552]
+shape = SubResource("ConcavePolygonShape3D_5jeca")

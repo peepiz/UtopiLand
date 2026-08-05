@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://csql0vtmoapj1"]
+
+[ext_resource type="Texture2D" uid="uid://b0y25e8icv5x4" path="res://textures/tree_billboard.png" id="1_jefhj"]
+[ext_resource type="Texture2D" uid="uid://cahrrygp7ud1f" path="res://textures/pipis.jpeg" id="2_eex8r"]
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=1133531297]
+
+[node name="TreeBillboard" type="Sprite2D" parent="." unique_id=1114100223]
+position = Vector2(603, 322)
+texture = ExtResource("1_jefhj")
+
+[node name="Pipis" type="Sprite2D" parent="." unique_id=2028759675]
+modulate = Color(1, 1, 1, 0.47058824)
+position = Vector2(599, 416)
+texture = ExtResource("2_eex8r")

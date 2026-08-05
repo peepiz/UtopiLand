@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://ddliv2tl580y0"]
+
+[ext_resource type="Script" uid="uid://c7dh3vuxjwkcr" path="res://character_body_3d.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://tvftc66hkang" path="res://cube_object.tscn" id="2_hqtel"]
+[ext_resource type="PackedScene" uid="uid://db7ln8yg23eoy" path="res://ball_object.tscn" id="3_sweqy"]
+[ext_resource type="PackedScene" uid="uid://b1g04dvutlr5j" path="res://cone_object.tscn" id="4_2hs0m"]
+[ext_resource type="PackedScene" uid="uid://blw6rc0om3ttn" path="res://platform_object.tscn" id="5_sweqy"]
+[ext_resource type="PackedScene" uid="uid://dtl2i25e6uwmr" path="res://radial_menu.tscn" id="6_2hs0m"]
+[ext_resource type="FontFile" uid="uid://c4qvuj058linb" path="res://fonts/monogram.ttf" id="7_1jxqw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xlpbk"]
+
+[sub_resource type="GDScript" id="GDScript_dw050"]
+script/source = "extends CanvasLayer
+
+# find our text
+@onready var stats_label: Label = $speed
+@onready var pos = $position
+
+# Link on player to get his speed
+@onready var player: CharacterBody3D = get_parent()
+
+func _process(_delta: float) -> void:
+	# get FPS of engine
+	var fps = Engine.get_frames_per_second()
+	
+	# get speed of player
+	var current_speed = 0.0
+	if player:
+		# read an speed of X & Z, ignores jumps
+		var horizontal_velocity = Vector3(player.velocity.x, 0, player.velocity.z)
+		current_speed = horizontal_velocity.length()
+	
+	# print it on display
+	stats_label.text = \"FPS: \" + str(fps) + \"\\nSPEED: \" + str(snapped(current_speed, 0.1))
+	pos.text = \"x: {x}\\n y: {y}\\n z: {z}\".format({\"x\": roundf(player.position.x), \"y\": roundf(player.position.y), \"z\": roundf(player.position.z)})
+"
+
+[node name="player" type="CharacterBody3D" unique_id=1368324004]
+script = ExtResource("1_4flbx")
+cube_scene = ExtResource("2_hqtel")
+ball_scene = ExtResource("3_sweqy")
+cone_scene = ExtResource("4_2hs0m")
+active_object_scene = ExtResource("2_hqtel")
+passive_object_scene = ExtResource("5_sweqy")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=674686448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7287612, -0.043346226)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2030948534]
+transform = Transform3D(0.3, 0, 0, 0, 0.45896357, 0, 0, 0, 0.3, 0, 0.3342504, -0.06606418)
+shape = SubResource("BoxShape3D_xlpbk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2109733986]
+layer = 2
+
+[node name="RadialMenu" parent="CanvasLayer" unique_id=1995718861 instance=ExtResource("6_2hs0m")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+mouse_filter = 2
+
+[node name="crosshair" type="CanvasLayer" parent="." unique_id=281958352]
+
+[node name="ColorRect" type="ColorRect" parent="crosshair" unique_id=371055059]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(1, 1, 1, 0.2901961)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1042403226]
+layer = 2
+script = SubResource("GDScript_dw050")
+
+[node name="speed" type="Label" parent="UI" unique_id=1402472438]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("7_1jxqw")
+text = "0.7"
+
+[node name="Label" type="Label" parent="UI" unique_id=28340143]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -68.0
+offset_bottom = 49.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("7_1jxqw")
+text = "controls:
+W,A,S,D: walk
+E: Interract
+Q: reset pos
+SPACE : jump
+SHIFT: sprint
+ESC: exit
+RMB: destroy object
+LMB: spawn object
+TAB: change object"
+
+[node name="position" type="Label" parent="UI" unique_id=109019711]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="Label2" type="Label" parent="UI" unique_id=2022596215]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 60.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.05882353, 0, 1)
+theme_override_fonts/font = ExtResource("7_1jxqw")
+theme_override_font_sizes/font_size = 150
+text = "PRESS E"

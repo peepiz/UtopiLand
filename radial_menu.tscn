@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://dtl2i25e6uwmr"]
+
+[sub_resource type="GDScript" id="GDScript_f2vk6"]
+script/source = "extends Control
+
+signal object_type_changed(new_type: int)
+
+@onready var label = $Label
+
+# 🎯 НОВЫЙ СТРОГИЙ ПОРЯДОК: Куб (0), Конус (1), Шар (2), Плейн (3)
+var options = [\"CUBE\", \"CONE\", \"BALL\", \"PLANE\"]
+var current_selection = 0
+
+func _process(_delta):
+	if !visible: return
+	
+	var center = Vector2(get_viewport().size) / 2
+	var mouse_pos = get_viewport().get_mouse_position()
+	var direction = mouse_pos - center
+	
+	if direction.length() < 50:
+		label.text = \"CHOOSE\"
+		return
+
+	var angle = rad_to_deg(direction.angle())
+	var adjusted_angle = fmod(angle + 180.0, 360.0)
+	
+	var new_selection = int(adjusted_angle / 90.0)
+	
+	if new_selection > 3:
+		new_selection = 3
+	
+	if new_selection != current_selection:
+		current_selection = new_selection
+		object_type_changed.emit(current_selection)
+	
+	label.text = options[current_selection]
+	queue_redraw()
+
+func _draw():
+	var center = Vector2.ZERO
+	draw_circle(center, 150, Color(0, 0, 0, 0.5))
+	
+	var start_angle = deg_to_rad(current_selection * 90.0 - 180.0)
+	var end_angle = deg_to_rad((current_selection + 1) * 90.0 - 180.0)
+	draw_arc(center, 155, start_angle, end_angle, 64, Color.ORANGE_RED, 5.0)
+"
+
+[node name="RadialMenu" type="Control" unique_id=1995718861]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = SubResource("GDScript_f2vk6")
+
+[node name="Label" type="Label" parent="." unique_id=418067084]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -11.5
+offset_right = 18.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "TEST"

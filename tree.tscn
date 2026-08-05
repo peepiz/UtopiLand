@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bk1bk7gmybuf5"]
+
+[ext_resource type="PackedScene" uid="uid://0oauo3yy00e8" path="res://3dObjects/tree.gltf.glb" id="1_nnvrw"]
+[ext_resource type="Texture2D" uid="uid://d4eawaklx7wo8" path="res://textures/tree.png" id="2_gvmkm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d2g23"]
+albedo_texture = ExtResource("2_gvmkm")
+
+[node name="tree_gltf" unique_id=438345980 instance=ExtResource("1_nnvrw")]
+
+[node name="Cylinder" parent="." index="0" unique_id=1076535563]
+surface_material_override/0 = SubResource("StandardMaterial3D_d2g23")

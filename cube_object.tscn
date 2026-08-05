@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://tvftc66hkang"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://bgivqtm816wo8" path="res://physics_for_objects_active.tres" id="1_ylki0"]
+[ext_resource type="Material" uid="uid://bl2oja2e8vavw" path="res://mat_glitch.tres" id="2_g78pm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_f2vk6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ogxwf"]
+
+[node name="RigidBody3D" type="RigidBody3D" unique_id=347176171]
+mass = 80.0
+physics_material_override = ExtResource("1_ylki0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=53095391]
+mesh = SubResource("BoxMesh_f2vk6")
+surface_material_override/0 = ExtResource("2_g78pm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=793586577]
+shape = SubResource("BoxShape3D_ogxwf")

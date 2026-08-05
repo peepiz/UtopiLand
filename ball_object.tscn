@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://db7ln8yg23eoy"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://bgivqtm816wo8" path="res://physics_for_objects_active.tres" id="1_0ob2h"]
+[ext_resource type="Material" uid="uid://bl2oja2e8vavw" path="res://mat_glitch.tres" id="2_kkock"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_d5mgd"]
+material = ExtResource("2_kkock")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wc6k3"]
+
+[node name="RigidBody3D" type="RigidBody3D" unique_id=363841301]
+mass = 80.0
+physics_material_override = ExtResource("1_0ob2h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=586672030]
+mesh = SubResource("SphereMesh_d5mgd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1118952299]
+shape = SubResource("SphereShape3D_wc6k3")

@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://b2oqaktgotnmm"]
+
+[ext_resource type="Script" uid="uid://by3w857jppe62" path="res://sure.gd" id="1_ax0l8"]
+[ext_resource type="Theme" uid="uid://ughjs0rdd1pa" path="res://UI.tres" id="1_ew7mu"]
+[ext_resource type="Texture2D" uid="uid://d2f8qa860ww2e" path="res://textures/circus.png" id="2_bm82x"]
+[ext_resource type="FontFile" uid="uid://bdf8vadf6i22o" path="res://fonts/HighSchoolNotebook3DRegular.ttf" id="4_l21dv"]
+[ext_resource type="Texture2D" uid="uid://008gavjqc08i" path="res://textures/UI/button9x.png" id="5_dv8ec"]
+[ext_resource type="Texture2D" uid="uid://dou75ee17i383" path="res://textures/UI/button9x_pressed.png" id="6_f3rhn"]
+[ext_resource type="FontFile" uid="uid://c4qvuj058linb" path="res://fonts/monogram.ttf" id="7_f3rhn"]
+
+[node name="Control" type="Control" unique_id=1155170520]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ew7mu")
+script = ExtResource("1_ax0l8")
+
+[node name="bg" type="TextureRect" parent="." unique_id=156142811]
+modulate = Color(0.49354547, 0.49354553, 0.49354553, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bm82x")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=716263241]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ew7mu")
+
+[node name="text" type="VBoxContainer" parent="MarginContainer" unique_id=31338040]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="MarginContainer/text" unique_id=1547526546]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_l21dv")
+theme_override_font_sizes/font_size = 100
+text = "are you sure?"
+
+[node name="buttons" type="VBoxContainer" parent="MarginContainer" unique_id=2079075997]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="quit" type="TextureButton" parent="MarginContainer/buttons" unique_id=1830067216]
+layout_mode = 2
+texture_normal = ExtResource("5_dv8ec")
+texture_pressed = ExtResource("6_f3rhn")
+
+[node name="Label" type="Label" parent="MarginContainer/buttons/quit" unique_id=1078896065]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -25.5
+offset_right = 60.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.47397572, 0.47397572, 0.47397572, 1)
+theme_override_fonts/font = ExtResource("7_f3rhn")
+theme_override_font_sizes/font_size = 64
+text = "SURE!"
+
+[node name="back" type="TextureButton" parent="MarginContainer/buttons" unique_id=1478711291]
+layout_mode = 2
+texture_normal = ExtResource("5_dv8ec")
+texture_pressed = ExtResource("6_f3rhn")
+
+[node name="Label" type="Label" parent="MarginContainer/buttons/back" unique_id=1289536280]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -25.5
+offset_right = 60.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.47397572, 0.47397572, 0.47397572, 1)
+theme_override_fonts/font = ExtResource("7_f3rhn")
+theme_override_font_sizes/font_size = 64
+text = "BACK!"
+
+[connection signal="pressed" from="MarginContainer/buttons/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/buttons/back" to="." method="_on_back_pressed"]

@@ -1,0 +1,10 @@
+[gd_resource type="Theme" format=3 uid="uid://ughjs0rdd1pa"]
+
+[ext_resource type="FontFile" uid="uid://c4qvuj058linb" path="res://fonts/monogram.ttf" id="1_5sq51"]
+
+[sub_resource type="SystemFont" id="SystemFont_8rkjj"]
+
+[resource]
+default_font = SubResource("SystemFont_8rkjj")
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_5sq51")
