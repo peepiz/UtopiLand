@@ -180,7 +180,7 @@ func spawn_object(object_scene: PackedScene) -> void:
 	var spawn_position: Vector3
 	
 	var is_plane = (current_selected_type == ObjectType.PLANE)
-	var ground_level = global_position.y - 1.0
+	var ground_level = global_position.y
 	
 	if result:
 		var hit_point = result.position
@@ -193,10 +193,10 @@ func spawn_object(object_scene: PackedScene) -> void:
 			if distance_to_hit > 5.0:
 				spawn_position = ray_origin + (ray_direction * 5.0)
 			else:
-				spawn_position = hit_point + Vector3(0, 1.0, 0)
+				spawn_position = hit_point + Vector3(0, 0.5, 0)
 	else:
 		if is_plane:
-			spawn_position = ray_origin + (ray_direction * 3.0)
+			spawn_position = ray_origin + (ray_direction * 1.5)
 			spawn_position.y = ground_level
 		else:
 			spawn_position = ray_origin + (ray_direction * 5.0)
@@ -221,27 +221,37 @@ func remove_object() -> void:
 	var ray_end = ray_origin + (ray_direction * max_ray_distance)
 	
 	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
-	query.exclude = [get_rid()] # dont shoot yourself
+	query.exclude = [get_rid()]
 	
 	var result = space_state.intersect_ray(query)
 	
 	if result:
 		var hit_node = result.collider
 		
-		# important check: are we trying to delete floor/map static scene?
-		if hit_node and hit_node != get_tree().current_scene:
-			# If the object has a parent and it's not the root of the scene (e.g., if it's a child Mesh),
-			# we move up to the object's root
-			var object_to_delete = hit_node
-			if object_to_delete.get_parent() != get_tree().current_scene:
-				# check if the node is linked to a static map
-				if "StaticBody3D" in object_to_delete.name or "GridMap" in object_to_delete.name:
-					print("You CAN DELETE IT! IT PIECE OF A WORLD!")
-					return
-			
-			print("deleting obj: ", object_to_delete.name)
-			object_to_delete.queue_free() # safety erase from mem
-		else:
-			print("raycast nothing see here, or it a root...")
+		# finding root of obj
+		var object_to_delete = hit_node
+		while object_to_delete.get_parent() and object_to_delete.get_parent() != get_tree().current_scene:
+			object_to_delete = object_to_delete.get_parent()
+		
+		# LIST OF PROTECTED NAMES! VERY IMPORTANT!
+		var protected_names = ["gnd", "Wall", "Wall2", "Wall3", "Wall4", "roof", "roof2", "roof3", "world", "CircusInside"]
+		
+		var is_protected = false
+		for protected_name in protected_names:
+			if object_to_delete.name == name or object_to_delete.name.begins_with(name):
+				is_protected = true
+				break
+		
+		# checking is not static body
+		if object_to_delete is StaticBody3D or object_to_delete is GridMap:
+			is_protected = true
+		
+		if is_protected:
+			print("Trying to delete piece of world!")
+			return
+		
+		# delete everything else
+		print("deleting obj: ", object_to_delete.name)
+		object_to_delete.queue_free()
 	else:
-		print("in crosshair emptiness, nothing to delete")
+		print("nothing finded")
