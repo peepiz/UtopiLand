@@ -19,3 +19,7 @@ func _on_play_pressed() -> void:
 func _on_quit_pressed() -> void:
 	print("IM PRESSED TOO!")
 	get_tree().change_scene_to_file("res://sure.tscn")
+
+
+func _on_button_pressed() -> void:
+	OS.shell_open("https://forms.gle/wAXSgHfiN3Fj2YjF7")
