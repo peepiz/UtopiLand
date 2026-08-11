@@ -7,9 +7,11 @@ A small indie game made in Godot. Explore, interact, and enjoy the weird vibe.
 
 ## 📸 Screenshots
 
-<img width="1920" height="1080" alt="screenshot" <img width="1920" height="1080" alt="screenshot4" src="https://github.com/user-attachments/assets/02e383a5-6936-4d01-90ba-e7c8267d67e2" />
-<img width="1920" height="1080" alt="screenshot3" src="https://github.com/user-attachments/assets/b793304f-ff7d-4570-b7c9-cc8f8f5da1a2" />
-src="https://github.com/user-attachments/assets/c8eb44ce-030d-4bb3-89d7-cc86014c45b1" /><img width="1920" height="1080" alt="screenshot2" src="https://github.com/user-attachments/assets/9d8bb431-17ca-483c-ade1-0adb95c7f021" />
+<img width="1920" height="1080" alt="screenshot4" src="https://github.com/user-attachments/assets/c27bf054-d1d3-4aca-9897-d35640efa7fa" />
+<img width="1920" height="1080" alt="screenshot2" src="https://github.com/user-attachments/assets/ed59f12c-8313-4e24-b968-9333c9a1446f" />
+<img width="1920" height="1080" alt="screenshot1" src="https://github.com/user-attachments/assets/ca4c2499-fb0a-45dc-ba46-ea183c06b96c" />
+<img width="1920" height="1080" alt="screenshot" src="https://github.com/user-attachments/assets/086c40c7-9cc1-4ecb-b176-9d7e4d593c6a" />
+
 
 
 
@@ -17,7 +19,7 @@ src="https://github.com/user-attachments/assets/c8eb44ce-030d-4bb3-89d7-cc86014c
 
 ## 🎮 Features
 - Psychedelic digital world
-- Interactive objects
+- Interactive objects(soon)
 - First playable version — v0.001
 
 ---
