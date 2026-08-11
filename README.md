@@ -7,7 +7,11 @@ A small indie game made in Godot. Explore, interact, and enjoy the weird vibe.
 
 ## 📸 Screenshots
 
-*(Add your screenshots here later)*
+<img width="1920" height="1080" alt="screenshot" <img width="1920" height="1080" alt="screenshot4" src="https://github.com/user-attachments/assets/02e383a5-6936-4d01-90ba-e7c8267d67e2" />
+<img width="1920" height="1080" alt="screenshot3" src="https://github.com/user-attachments/assets/b793304f-ff7d-4570-b7c9-cc8f8f5da1a2" />
+src="https://github.com/user-attachments/assets/c8eb44ce-030d-4bb3-89d7-cc86014c45b1" /><img width="1920" height="1080" alt="screenshot2" src="https://github.com/user-attachments/assets/9d8bb431-17ca-483c-ade1-0adb95c7f021" />
+
+
 
 ---
 
